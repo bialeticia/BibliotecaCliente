@@ -15,18 +15,18 @@ public class Cliente {
              PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
              BufferedReader console = new BufferedReader(new InputStreamReader(System.in))) {
         	
-        	String initialMessage;
-            while ((initialMessage = in.readLine()) != null && !initialMessage.isEmpty()) {
-                System.out.println(initialMessage);
+        	String mensagemInicial;
+            while ((mensagemInicial = in.readLine()) != null && !mensagemInicial.isEmpty()) {
+                System.out.println(mensagemInicial);
             }
             
-            String userInput;
-            while ((userInput = console.readLine()) != null) {
-                out.println(userInput);
+            String inputUsuario;
+            while ((inputUsuario = console.readLine()) != null) {
+                out.println(inputUsuario);
 
                 String serverResponse = in.readLine();
-                if (userInput.startsWith("LISTAR")) {
-                    processListResponse(serverResponse);
+                if (inputUsuario.startsWith("LISTAR")) {
+                	processaRespostaLista(serverResponse);
                 } else {
                     System.out.println("Resposta: " + serverResponse);
                 }
@@ -36,7 +36,7 @@ public class Cliente {
         }
     }
 
-    private static void processListResponse(String response) {
+    private static void processaRespostaLista(String response) {
         List<String> bookList = Arrays.asList(response.split("\\|\\|")); // Usamos o mesmo delimitador "||"
 
         System.out.println("Lista de livros:");
@@ -45,4 +45,3 @@ public class Cliente {
         }
     }
 }
-
